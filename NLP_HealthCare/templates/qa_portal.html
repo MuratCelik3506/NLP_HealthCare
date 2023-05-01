@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body style="background:#00dd9e">
+
+<div style="margin: auto;
+  width: 400px; height:200px">
+
+    <h1>Hello World!</h1>
+    <p>Welcome to my first Django project!</p>
+
+</div>
+
+
+<div style="margin: auto;
+  width: 400px; height:200px; background:#d0ffa6">
+     <form action="/home" method="post">
+     {% csrf_token %}
+     <label for="fname">Ask a Question: <br></label>
+     <input style = "width:80%"type="text" id="fname" name="fname"><br>
+     <input type="submit" value="Submit">
+    </form>
+</div>
+
+
+<div style="margin: auto;
+  width: 400px; height:200px; background:#d0ffa6">
+    <p>{{ answer }}</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+{% include "_header.html" %}
+
+<style>
+    .button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}
+</style>
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin: auto;  width: 60%;">
+
+
+    <div class="w3-row w3-padding-64" style="margin: auto;">
+      <div class=" w3-container" style="margin: auto; text-alignment:center;">
+        <h1 class="w3-text-teal" style="text-align: center;">{{ Title }} </h1>
+        <p>With a selected tag, your question will be reviewed and answered in all articles in that field.</p>
+          <form action="/qa_articles" method="post">
+              {% csrf_token %}
+              <label for="search_on_page" style="float:left">Your Question is here:  </label>
+              <label for="brow" style="float:right">You can choose your tag in here:</label><br>
+              <div style="float:left">
+                  <input type="text" id="search_on_page" name="search_on_page" placeholder="Question" onkeyup="success()">
+              </div>
+              <div style="float:right">
+                  <input list="brow" name="brow" id="brows" style="margin-left:100px" placeholder="Tag" onkeyup="success()">
+                    <datalist id="brow">
+                        {% for key in Keys %}
+                            <option value="{{key}}">
+                        {% endfor %}
+                    </datalist>
+              </div> <br>
+              <div style="top: 50%;left: 50%;">
+                  <input  class="button button5" type="submit" id="button" value="Submit" style="font-size: 20px; width: 50%;margin-left:25%">
+              </div>
+          </form>
+
+      </div >
+        {% if Search_First %}
+        <div style="margin:auto; background-color:#3e3c3b; margin-top:20px;" class="w3-container">
+                    <h1 class="w3-text-teal" style="text-align: center;">Answer of AI </h1>
+                    <p style="color:white"> Exactly {{Total_Articles}} articles were reviewed. And found the best answer. </p>
+                    <p style="color:white">The question is : {{Question}} </p>
+                    <p style="color:white">The answer is   &nbsp;&nbsp;: {{Answer}} </p>
+        </div>
+        {% endif%}
+
+
+
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>

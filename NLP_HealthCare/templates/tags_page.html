@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+{% include "_header.html" %}
+
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:200px; margin-top:75px;">
+
+  <h1 class="w3-text-teal"><a style="text-decoration:none;" onclick="send_tag('{{article.Name}}')" href="" >Welcome tag page about {{ tag }}</a> </h1>
+
+  {% for article in articles %}
+
+    <div class="w3-row w3-padding-64">
+      <div class="w3-twothird w3-container">
+        <h1 class="w3-text-teal"><a style="text-decoration:none;" id ='{{article.Name}}' onclick="send_title('{{article.Name}}')" href="" >{{ article.Title }}</a> </h1>
+        <p> {{article.Summary}}</p>
+      </div>
+      <div class="w3-third w3-container">
+        <p class=" w3-padding-large w3-padding-32 w3-center">KeyWords :
+          <a id ='{{article.K1}}' onclick="send_tag('{{article.K1}}')" href="" >#{{article.K1}}</a>
+          <a id ='{{article.K2}}' onclick="send_tag('{{article.K2}}')" href="" >#{{article.K2}}</a>
+          <a id ='{{article.K3}}' onclick="send_tag('{{article.K3}}')" href="" >#{{article.K3}}</a>
+          <a id ='{{article.K4}}' onclick="send_tag('{{article.K4}}')" href="" >#{{article.K4}}</a>
+          <a id ='{{article.K5}}' onclick="send_tag('{{article.K5}}')" href="" >#{{article.K5}}</a>
+        </p>
+      </div>
+    </div>
+  {% endfor %}
+
+
+<script>
+  function send_tag(name) {
+        var elementCreatedOne = document.getElementById(name);
+        elementCreatedOne.setAttribute("href","/tags/"+name+"/1");
+  }
+  function send_title(name) {
+        var elementCreatedOne = document.getElementById(name);
+        elementCreatedOne.setAttribute("href","/article/"+name);
+  }
+
+</script>
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+        {% for page_num in page_size %}
+          <a class="w3-button w3-black" href="/tags/{{tag}}/{{page_num}}">{{page_num}}</a>
+        {% endfor %}
+    </div>
+  </div>
+
+
+
+<!-- END MAIN -->
+</div>
+
+
+</body>
+</html>
